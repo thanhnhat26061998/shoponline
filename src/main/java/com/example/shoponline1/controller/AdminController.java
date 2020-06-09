@@ -239,6 +239,7 @@ public class AdminController {
 		return "system/products/productDetail/addPrd";
 	}
 
+	// edit product detail
 	@RequestMapping("/admin/editdt")
 	public String editProductDetail(HttpSession session, Model model, @RequestParam("id") int id) {
 
@@ -298,6 +299,7 @@ public class AdminController {
 		prdDt = productDetaiDao.save(prdDt);
 		return "redirect:/admin/productdetail?id=" + prdDto.getProductId();
 	}
+	// save
 
 	@PostMapping("admin/saves")
 	public String savePrds(@ModelAttribute("prdDT") ProductDetailAdminDto prdDto, Model model,
@@ -345,6 +347,8 @@ public class AdminController {
 		return "redirect:/admin/productdetail?id=" + ids;
 
 	}
+	
+	// add promotion
 
 	@RequestMapping("/admin/product/addpromotion")
 	public String addPromotion(HttpSession session, Model model) {
@@ -362,6 +366,8 @@ public class AdminController {
 		promotionDao.save(promotion);
 		return "redirect:/admin/product";
 	}
+	
+	// add trademerk
 
 	@RequestMapping("/admin/product/addtrademark")
 	public String addTrade(HttpSession session, Model model) {
@@ -440,6 +446,8 @@ public class AdminController {
 		return "redirect:/admin/order";
 	}
 
+	
+	// update status
 	@RequestMapping("/admin/statusorder")
 	public String statusOrder(@RequestParam("id") int id) {
 		Order or = orderDao.findById(id).get();
