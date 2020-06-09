@@ -31,35 +31,7 @@
 
 		<!-- Top Bar -->
 
-		<div class="top_bar" th:fragment="header_topbar">
-			<div class="container">
-				<div class="row">
-					<div class="col d-flex flex-row">
-						<div class="top_bar_content ml-auto">						
-							<div class="top_bar_user" th:if="${user==null}">
-								<div class="user_icon"><img src="business/images/user.svg" alt=""></div>
-								<div><a href="/register">Register</a></div>
-								<div><a href="/login">Sign in</a></div>
-							</div>
-							
-							<div class="top_bar_menu" th:if="${user!=null}">
-								<ul class="standard_dropdown top_bar_dropdown">
-									<li>
-										<a href="#" th:utext="*{user.name}"><i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li><a th:href="@{logout}">Logout</a></li>
-											<li><a th:href="@{/editprofile}">Edit profile</a></li>
-										</ul>
-									</li>
-						
-								</ul>
-							</div>
-							
-						</div>
-					</div>
-				</div>
-			</div>		
-		</div>
+		
 
 		<!-- Header Main -->
 
@@ -107,13 +79,11 @@
 								
 								
 							</div>
-
-							<!-- Cart -->
 							<div class="cart">
 								<div class="cart_container d-flex flex-row align-items-center justify-content-end">
 									<div class="cart_icon">
-										<img src="business/images/cart.png" alt="">
-										<div class="cart_count"><span>10</span></div>
+										<img src="/business/images/cart.png" alt="">
+										<div class="cart_count"><span>2</span></div>
 									</div>
 									<div class="cart_content">
 										<div class="cart_text"><a href="/cart">Cart</a></div>
@@ -121,6 +91,33 @@
 									</div>
 								</div>
 							</div>
+							
+							<div class="top_bar_content ml-auto">	
+											
+							<div class="top_bar_user" th:if="${user==null}" style="display: inline; float: right;">
+								<div class="user_icon"><img src="business/images/user.svg" alt=""></div>
+								<div><a href="/register">Register</a></div>
+								<div><a href="/login">Sign in</a></div>
+							</div>
+							
+							<div class="top_bar_menu" th:if="${user!=null}" style="margin-top: 17px">
+								<ul class="standard_dropdown top_bar_dropdown">
+									<li>
+										<a href="#" th:utext="*{user.name}"><i class="fas fa-chevron-down"></i></a>
+										<ul>
+											<li><a th:href="@{logout}">Logout</a></li>
+											<li><a th:href="@{/editprofile}">Edit profile</a></li>
+										</ul>
+									</li>
+						
+								</ul>
+							</div>
+							
+							
+						</div>
+						
+						<!-- Cart -->
+							
 						</div>
 					</div>
 				</div>
