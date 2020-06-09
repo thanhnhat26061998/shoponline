@@ -4,6 +4,7 @@ import com.example.shoponline1.dao.IColorDao;
 import com.example.shoponline1.dao.IConfigDao;
 import com.example.shoponline1.dao.IImageDao;
 import com.example.shoponline1.dao.IOrderDao;
+import com.example.shoponline1.dao.IOrderDetailDao;
 import com.example.shoponline1.dao.IProductDao;
 import com.example.shoponline1.dao.IProductDetailDao;
 import com.example.shoponline1.dao.IPromotionDao;
@@ -14,6 +15,7 @@ import com.example.shoponline1.entity.Color;
 import com.example.shoponline1.entity.Configurator;
 import com.example.shoponline1.entity.Images;
 import com.example.shoponline1.entity.Order;
+import com.example.shoponline1.entity.OrderDetail;
 import com.example.shoponline1.entity.Product;
 import com.example.shoponline1.entity.ProductDetail;
 import com.example.shoponline1.entity.Promotion;
@@ -99,6 +101,9 @@ public class AdminController {
 
 	@Autowired
 	private IOrderDao orderDao;
+	
+	@Autowired
+	private IOrderDetailDao orderDetailDao;
 
 	// admin home
 
@@ -468,6 +473,17 @@ public class AdminController {
 		}
 		return "redirect:/admin/order";
 
+	}
+	// order detail
+	
+	@RequestMapping("/admin/orderdetail")
+	public String orderDetail(@RequestParam("id") int id,Model model, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		model.addAttribute("user", user);
+		Order or = orderDao.findById(id).get();
+		List<OrderDetail> order = or.getOrderDetail();
+		model.addAttribute("order", order);
+		return "system/order/list_order_detail";
 	}
 
 }

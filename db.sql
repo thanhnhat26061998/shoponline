@@ -54,20 +54,3 @@ INSERT INTO `product` (`product_id`, `name`, `notes`, `promotion_id`, `trademark
 ('9', '12', '22000000', '1', '1', '1', '1');
 
 
-
-INSERT INTO `order_detail` (`order_detail_id`, `color`, `config`, `discountvalue`, `price`, `quantity`, `product_id`) VALUES ('1', 'xanh', '128 gb', '12', '10000000', '12', '1');
-
-
-INSERT INTO `orders` (`order_id`, `delivery_time`, `delivery_adress`, `name_receiver`, `notes`, `payments`, `status`, `totals`, `order_detail_id`, `user_id`) VALUES 
-('1', '2029/12/12', NULL, NULL, NULL, NULL, 'delivered', '1000000', '1', '1'),
-('2', '2020/12/12', NULL, NULL, NULL, NULL, 'confirmed', '1000000', '1', '1'),
-('3', '2020/12/11', NULL, NULL, NULL, NULL, 'shipping', '1000000', '1', '1'),
-('4', '2020/07/12', NULL, NULL, NULL, NULL, 'delivered', '1000000', '1', '1'),
-('5', '2020/12/12', NULL, NULL, NULL, NULL, 'shipping', '1000000', '1', '1'),
-('6', '2020/12/12', NULL, NULL, NULL, NULL, 'confirmed', '1000000', '1', '1'),
-('7', '2020/08/12', NULL, NULL, NULL, NULL, 'shipping', '1000000', '1', '1'),
-('8', '2020/04/12', NULL, NULL, NULL, NULL, 'shipping', '1000000', '1', '1'),
-('9', '2020/12/12', NULL, NULL, NULL, NULL, 'delivered', '1000000', '1', '1'),
-('10', '2020/03/12', NULL, NULL, NULL, NULL, 'shipping', '1000000', '1', '1'),
-('11', '2020/02/12', NULL, NULL, NULL, NULL, 'confirmed', '1000000', '1', '1'),
-('12', '2020/06/12', NULL, NULL, NULL, NULL, 'shipping', '1000000', '1', '1');

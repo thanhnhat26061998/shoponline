@@ -65,36 +65,36 @@ public class OrderServiceImpl implements IOrderService {
         //Session session = 
     	
         //order.getUsers();
-
+    	double total=0; 
         List<CartLineInfo> lines = cartInfo.getCartLines();
+        Order order = new Order();
+        
         for (CartLineInfo line : lines) {
-            OrderDetail detail = new OrderDetail();
+        	OrderDetail detail = new OrderDetail();
             detail.setPrice(line.getAmount());
             detail.setQuantity(line.getQuantity());
             int code = line.getProductInfo().getProductId();
-            
             ProductDetail prdDt = productDetailDao.findById(code).get();
             Product product = iProductDao.findById(prdDt.getProduct().getId()).get();
             detail.setColor(prdDt.getColor().getName());
             detail.setConfig(prdDt.getConfigurator().getRom());
             detail.setDiscountvalue(prdDt.getProduct().getPromotion().getDiscountvalue());
             detail.setProduct(product);
-
+            detail.setOrder(order);
+            total += line.getAmount();
             iOrderDetailDao.save(detail);
-            
-            List<Order> or = new ArrayList<Order>();
-            Order order = new Order();
-
+   // set order         
             order.setDeliveryTime(new Date());
             order.setUsers(user);
             order.setDeliveryAdress(user.getAddress());
             order.setStatus("confirmed");
-            order.setOrderDetail(detail);
-            order.setTotals(line.getAmount());
-            or.add(order);
+            order.setTotals(total);
             iOrderDao.save(order);
             cartInfo.setOrderNum(order.getOrderId());
+            
+            
         }
+        
         
         
     }
@@ -175,16 +175,13 @@ public class OrderServiceImpl implements IOrderService {
         List<OrderDetail> orderDetails = iOrderDetailDao.findAll();
         OrderDetailInfo orderDetailInfo = new OrderDetailInfo();
         List<OrderDetailInfo> orderDetailInfos = new ArrayList<>();
-        
         for (OrderDetail orderDetail1 : orderDetails) {
-        	List<Order> or = orderDetail1.getOrder();
-        	for (Order order2 : or) {
-				if (order2.getOrderId()==orderId) {
-					orderDetailInfo.setPrice(orderDetail1.getPrice());
-	                orderDetailInfo.setProductName(orderDetail1.getProduct().getName());
-	                orderDetailInfos.add(orderDetailInfo);
-				}
-			}
+            if (orderDetail1.getOrder().getOrderId() == orderId) {
+
+                orderDetailInfo.setPrice(orderDetail1.getPrice());
+                orderDetailInfo.setProductName(orderDetail1.getProduct().getName());
+                orderDetailInfos.add(orderDetailInfo);
+            }
         }
 
         return orderDetailInfos;

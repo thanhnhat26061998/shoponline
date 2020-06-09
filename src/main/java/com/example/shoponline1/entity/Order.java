@@ -49,9 +49,9 @@ public class Order implements Serializable {
     @ManyToOne
     @JoinColumn(name = "userId")
     private User users;
-    @ManyToOne
-    @JoinColumn(name = "orderDetailId")
-    private OrderDetail orderDetail;
+    
+    @OneToMany(mappedBy = "order")
+    private List<OrderDetail> orderDetail;
 
     
     

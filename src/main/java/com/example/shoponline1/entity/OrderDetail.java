@@ -33,8 +33,9 @@ public class OrderDetail implements Serializable {
     @ManyToOne
     @JoinColumn(name = "productId")
     private Product product;
-    @OneToMany(mappedBy = "orderDetail")
-    private List<Order> order;
+    @ManyToOne
+    @JoinColumn(name = "orderId")
+    private Order order;
 
 
    
