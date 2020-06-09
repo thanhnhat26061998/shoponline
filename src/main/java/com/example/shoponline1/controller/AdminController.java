@@ -445,6 +445,10 @@ public class AdminController {
 		Order or = orderDao.findById(id).get();
 
 		if (or.getStatus().equals("delivered")) {
+			List<OrderDetail> orDt = or.getOrderDetail();
+			for (OrderDetail orderDetail : orDt) {
+				orderDetailDao.deleteById(orderDetail.getId());
+			}
 			orderDao.deleteById(id);
 		}
 
