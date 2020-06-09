@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/delete").hasRole("ADMIN")
                 .antMatchers("/admin/addproduct").hasRole("ADMIN")
                 .antMatchers("/admin/editproduct").hasRole("ADMIN")
-                .antMatchers("admin/saveprd").hasRole("ADMIN")
+                .antMatchers("/admin/saveprd").hasRole("ADMIN")
                 .antMatchers("/admin/addproductDt").hasRole("ADMIN")
                 .antMatchers("/admin/editdt").hasRole("ADMIN")
                 .antMatchers("/admin/product/addpromotion").hasRole("ADMIN")

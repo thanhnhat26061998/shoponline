@@ -130,7 +130,8 @@
 												<th th:text="${order.orderDetail.product.name}"></th>
 												<th th:text="${order.users.name}"></th>
 												<th th:text="${order.orderDetail.config}"></th>
-												<th th:text="${order.totals}"></th>
+												<th 
+												th:text="${#numbers.formatDecimal(order.totals, 0, 'COMMA', 0, 'POINT')}"></th>
 												<th th:text="${order.orderDetail.color}"></th>
 
 												<th th:text="${order.deliveryTime}"></th>
