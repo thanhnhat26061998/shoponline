@@ -107,14 +107,10 @@ public class AdminController {
 
 	// admin home
 
-	@RequestMapping("/admin")
-	public String admin(HttpSession sesion, Model model) {
-
-		return "redirect:/admin/product";
-	}
+	
 
 	// list product
-	@RequestMapping("/admin/product")
+	@RequestMapping("/admin")
 	public String product(HttpSession session, Model model, HttpServletRequest request) {
 
 		int page = 0;
@@ -131,6 +127,11 @@ public class AdminController {
 		model.addAttribute("product", prd);
 		return "system/products/product/product";
 	}
+	
+	@RequestMapping("/admin/product")
+	public String producttt() {
+		return "redirect:/admin";
+	}
 	// delete product
 
 	@GetMapping("/admin/delete")
@@ -142,7 +143,7 @@ public class AdminController {
 			productDetaiDao.deleteById(productDetail.getId());
 		}
 		productDao.deleteById(id);
-		return "redirect:/admin/product";
+		return "redirect:/admin";
 	}
 
 	// add product
@@ -209,7 +210,7 @@ public class AdminController {
 		}
 		productDao.save(prd);
 
-		return "redirect:/admin/product";
+		return "redirect:/admin";
 	}
 
 	// product detail -------------------------//
