@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Onetech</title>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="description" content="OneTech shop project"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" type="text/css" th:href="@{business/styles/bootstrap4/bootstrap.min.css}"
+              href="../../../static/business/styles/bootstrap4/bootstrap.min.css"/>
+        
+        <link th:href="@{business/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css}" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" type="text/css" th:href="@{business/plugins/OwlCarousel2-2.2.1/owl.carousel.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{business/plugins/OwlCarousel2-2.2.1/owl.theme.default.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{business/plugins/OwlCarousel2-2.2.1/animate.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{business/plugins/jquery-ui-1.12.1.custom/jquery-ui.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{business/styles/shop_styles.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{business/styles/shop_responsive.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{business/styles/main_styles.css}"/>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
+              integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"/>
+
+        <style type="text/css">
+            h3 {
+                display: inline;
+                text-decoration: none;
+                color: #222;
+                font: 16px/18px Helvetica,Arial,'DejaVu Sans','Liberation Sans',Freesans,sans-serif;
+            }
+
+            .card-body{
+                padding: 0px;
+                padding-left: 20px;
+            }
+            .price{
+                padding-left: 20px;
+            }
+            .price strong{
+                display: inline-block;
+                vertical-align: middle;
+                color: #e10c00;
+                margin-right: 5px;
+
+
+            }
+            .price span{
+                display: inline-block;
+                vertical-align: middle;
+                text-decoration: line-through;
+
+                color: #222;
+            }
+            .discount{
+                background-image: linear-gradient(-90deg,#ec1f1f 0%,#ff9c00 100%);
+                border-radius: 10px;
+                padding: 1px 10px 2px 0;
+                top: 224px !important;
+                display: inline-block;
+                position: absolute;
+                top: 187px;
+                left: 10px;
+                font-size: 11px;
+                color: #fff;
+                font-weight: 600;
+                padding: 0 5px;
+                height: 18px;
+            }
+
+            .card-footer{
+
+                display: inline;
+            }
+
+            .btnbuy{
+                text-align: center;
+            }
+            .btn_buyins{
+                
+                text-align: center;
+                overflow: hidden;
+                padding: 5px 0;
+                width: 110px;
+                cursor: pointer;
+                font-size: 12px;
+                color: #fff;
+                text-transform: uppercase;
+                border: 1px solid #288ad6;
+                border-radius: 3px;
+                background: #288ad6;
+                transition: all .3s ease;
+            }
+            .btn_buyins a{
+            	text-align: center;
+            
+            }
+
+            .a_href:HOVER{
+                text-decoration: none;
+            }
+
+            .pagination {
+                display: inline;
+                float: right;
+            }
+
+            .pagination a {
+                color: black;
+                padding: 5px 5px;
+                text-decoration: none;
+            }
+
+            .pagination a.active {
+                background-color: gray;
+                color: white;
+                border-radius: 2px;
+            }
+            .card-img-top{
+                padding-top: 10px;
+            }
+           
+        </style>
+
+    </head>
+
+    <body>
+
+        <div class="super_container">
+
+            <!-- Header -->
+
+            <header class="header" th:replace = "~{business/fragment/fragment ::header}">
+
+            </header>
+
+            <!-- Home -->
+
+            <div class="banner">
+                <div class="banner_background" style="background-image:url(business/images/banner_background.jpg)"></div>
+                <div class="container fill_height">
+                    <div class="row fill_height">
+                        <div class="banner_product_image"><img src="business/images/banner_product.png" alt=""/></div>
+                        <div class="col-lg-5 offset-lg-4 fill_height">
+                            <div class="banner_content">
+                                <h1 class="banner_text">new era of smartphones</h1>
+                                <!-- 						<div class="banner_price"><span>$530</span>$460</div> -->
+                                <!-- 						<div class="banner_product_name">Apple Iphone 6s</div> -->
+                                <!-- 						<div class="button banner_button"><a href="#">Shop Now</a></div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shop -->
+
+            <div class="shop">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-2">
+
+                            <!-- Shop Sidebar -->
+                            <div class="shop_sidebar">
+                                <div class="sidebar_section">
+                                    <div class="sidebar_title">Filter By</div>
+                                    <ul class="sidebar_categories">
+                                        <li><a th:href="@{/filterByBrand(name=iphone)}">Iphone</a></li>
+                                        <li><a th:href="@{/filterByBrand(name=samsung)}">Samsung</a></li>
+                                        <li><a th:href="@{/filterByBrand(name=lg)}">Lg</a></li>
+                                        <li><a th:href="@{/filterByBrand(name=oppo}">Oppo</a></li>
+                                        <li><a th:href="@{/filterByBrand(name=goole)}">Google</a></li>
+                                        <li><a th:href="@{/filterByBrand(name=xiaomi)}">Xiaomi</a></li>
+                                        <li><a th:href="@{/filterByBrand(name=sony)}">Sony</a></li>
+                                        <li><a th:href="@{/filterByBrand(name=nokia)}">Nokia</a></li>
+                                        <li><a th:href="@{/filterByBrand(name=oneplus)}">Oneplus</a></li>
+                                    </ul>
+                                </div>
+                                <div class="sidebar_section filter_by_section">
+
+                                    <div class="sidebar_title">Price</div>
+                                    <ul class="sidebar_categories">
+                                        <li><a th:href="@{/filterByPrice(price=3000000)}">3 triệu</a></li>
+                                        <li><a th:href="@{/filterByPrice(price=5000000)}">5 triệu</a></li>
+                                        <li><a th:href="@{/filterByPrice(price=7000000)}">7 triệu</a></li>
+                                        <li><a th:href="@{/filterByPrice(price=9000000)}">9 triệu</a></li>
+                                        <li><a th:href="@{/filterByPrice(price=15000000)}">15 triệu</a></li>
+                                        <li><a th:href="@{/filterByPrice(price=20000000)}">20 triệu</a></li>
+                                        <li><a th:href="@{/filterByPrice(price=25000000)}">25 triệu</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-10">
+
+                            <!-- Shop Content -->
+
+                            <div class="shop_content">
+                                <div class="row  row-cols-md-4">
+                                    <th:block th:each="product : ${productPage}">  
+                                        <div>
+                                            <a th:href="@{/productdetail(id=${product.productDetailId})}" class="a_href">    
+                                                <div class="card h-100">
+                                                    <img th:src="${product.img}" class="card-img-top" alt="..."/>
+                                                    <div class="card-body">
+                                                        <h3 th:text="${product.productName}"></h3>
+                                                        <h3 th:text="${product.rom}"></h3>
+                                                    </div>
+
+                                                    <div class="price">
+                                                        <strong th:text="${#numbers.formatDecimal(product.priceAfter, 0, 'COMMA', 0, 'POINT')}"></strong><strong>đ</strong>
+                                                        <span th:text="${#numbers.formatDecimal(product.priceBefore, 0, 'COMMA', 0, 'POINT')}"></span><span>đ</span>
+                                                    </div>
+                                                    <div class="discount"> 
+                                                        <label>giảm</label>
+                                                        <label  th:text="${#numbers.formatDecimal(product.reducedPrice, 0, 'COMMA', 0, 'POINT')}"></label>
+                                                        <label>đ</label>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <div class="btnbuy">
+                                                            <a th:href="@{|/buyProduct?code=${product.ProductId}|}" class="btn_buyins">Add to Cart</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </th:block>
+                                </div>
+
+                            </div>
+                            <br/>
+                            <div th:if="${productPage.totalPages > 0}" class="pagination"
+                                 th:each="pageNumber : ${pageNumbers}">
+                                <a th:href="@{/home(size=${productPage.size}, page=${pageNumber})}"
+                                   th:text=${pageNumber}
+                                   th:class="${pageNumber==productPage.number + 1} ? active"></a>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer"  th:replace = "~{business/fragment/fragment ::footer}">
+            </footer>
+
+            <!-- Copyright -->
+
+            <div class="copyright" th:replace = "~{business/fragment/fragment ::copyright}">
+            </div>
+        </div>
+
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="styles/bootstrap4/popper.js"></script>
+        <script src="styles/bootstrap4/bootstrap.min.js"></script>
+        <script src="plugins/greensock/TweenMax.min.js"></script>
+        <script src="plugins/greensock/TimelineMax.min.js"></script>
+        <script src="plugins/scrollmagic/ScrollMagic.min.js"></script>
+        <script src="plugins/greensock/animation.gsap.min.js"></script>
+        <script src="plugins/greensock/ScrollToPlugin.min.js"></script>
+        <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+        <script src="plugins/easing/easing.js"></script>
+        <script src="plugins/Isotope/isotope.pkgd.min.js"></script>
+        <script src="plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+        <script src="plugins/parallax-js-master/parallax.min.js"></script>
+        <script src="js/shop_custom.js"></script>
+    </body>
+
+</html>
