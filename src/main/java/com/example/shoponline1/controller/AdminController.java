@@ -26,7 +26,9 @@ import com.example.shoponline1.service.ImageService;
 import com.example.shoponline1.service.OrderServiceImpl;
 import com.example.shoponline1.validation.productAdminValidation;
 import com.example.shoponline1.validation.productAdminValidations;
+import com.example.shoponline1.validation.promotionAdminValidation;
 import com.example.shoponline1.validation.saveProductAdminValidation;
+import com.example.shoponline1.validation.tradeMarkAdminValidation;
 
 import java.awt.Image;
 import java.io.BufferedOutputStream;
@@ -83,6 +85,12 @@ public class AdminController {
 
 	@Autowired
 	private saveProductAdminValidation savePrdValidation;
+	
+	@Autowired
+	private tradeMarkAdminValidation tradeMarValidation;
+	
+	@Autowired
+	private promotionAdminValidation promotionValidation;
 
 	@Autowired
 	private IProductDetailDao productDetaiDao;
@@ -367,8 +375,11 @@ public class AdminController {
 	}
 
 	@RequestMapping("/admin/savepromotion")
-	public String savePromotion(@ModelAttribute("promotion") Promotion promotion) {
-
+	public String savePromotion(@ModelAttribute("promotion") Promotion promotion, Model model, BindingResult bindingResult) {
+		promotionValidation.validate(promotion, bindingResult);
+		if (bindingResult.hasErrors()) {
+			return "system/products/product/addPromotion";
+		}
 		promotionDao.save(promotion);
 		return "redirect:/admin/product";
 	}
@@ -386,8 +397,12 @@ public class AdminController {
 	}
 
 	@RequestMapping("/admin/savetrademark")
-	public String saveTrade(@ModelAttribute("trademark") Trademark trademark) {
-
+	public String saveTrade(@ModelAttribute("trademark") Trademark trademark, Model model, BindingResult bindingResult) {
+		
+		tradeMarValidation.validate(trademark, bindingResult);
+		if (bindingResult.hasErrors()) {
+			return "system/products/product/addTrademark";
+		}
 		trademarDao.save(trademark);
 		return "redirect:/admin/product";
 	}

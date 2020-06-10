@@ -165,16 +165,10 @@
                             <div class="shop_sidebar">
                                 <div class="sidebar_section">
                                     <div class="sidebar_title">Filter By</div>
-                                    <ul class="sidebar_categories">
-                                        <li><a th:href="@{/filterByBrand(name=iphone)}">Iphone</a></li>
-                                        <li><a th:href="@{/filterByBrand(name=samsung)}">Samsung</a></li>
-                                        <li><a th:href="@{/filterByBrand(name=lg)}">Lg</a></li>
-                                        <li><a th:href="@{/filterByBrand(name=oppo)}">Oppo</a></li>
-                                        <li><a th:href="@{/filterByBrand(name=goole)}">Google</a></li>
-                                        <li><a th:href="@{/filterByBrand(name=xiaomi)}">Xiaomi</a></li>
-                                        <li><a th:href="@{/filterByBrand(name=sony)}">Sony</a></li>
-                                        <li><a th:href="@{/filterByBrand(name=nokia)}">Nokia</a></li>
-                                        <li><a th:href="@{/filterByBrand(name=oneplus)}">Oneplus</a></li>
+                                    <ul  style="margin: 0px;"
+                                    class="sidebar_categories" th:each="td : ${td}">
+                                        <li><a th:href="@{/filterByBrand(name=${td.name})}" th:text="${td.name}"></a></li>
+                                        
                                     </ul>
                                 </div>
                                 <div class="sidebar_section filter_by_section">

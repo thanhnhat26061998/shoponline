@@ -21,7 +21,7 @@ public interface IOrderService {
 
     void saveOrder(CartInfo cartInfo, User user);
 
-    OrderInfo getOrderInfo(int orderId);
+    List<OrderInfo> getOrderInfo(int orderId);
     
  //   List<OrderInfo> getAllOrderInfo(int userId);
     

@@ -100,18 +100,19 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public OrderInfo getOrderInfo(int userId) {
+    public List<OrderInfo> getOrderInfo(int userId) {
         List<Order> orderList = iOrderDao.findAll();
+        List<OrderInfo> or = new ArrayList<OrderInfo>();
         OrderInfo orderInfo = new OrderInfo();
         for (Order order : orderList) {
+        	
             if (order.getUsers().getId() == userId) {
-
                 orderInfo.setId(order.getOrderId());
                 orderInfo.setOrderDate(order.getDeliveryTime());
-
+                or.add(orderInfo);
             }
         }
-        return orderInfo;
+        return or;
     }
 /*
     @Override

@@ -1,7 +1,9 @@
 package com.example.shoponline1.controller;
 
+import com.example.shoponline1.dao.ITrademarkDao;
 import com.example.shoponline1.dto.CartInfo;
 import com.example.shoponline1.dto.ProductDto;
+import com.example.shoponline1.entity.Trademark;
 import com.example.shoponline1.entity.User;
 import com.example.shoponline1.service.IProductDetailService;
 import com.example.shoponline1.utils.Utils;
@@ -28,6 +30,8 @@ public class HomeController {
 
     @Autowired
     private IProductDetailService productDetailService;
+    
+    @Autowired ITrademarkDao trademarkDao;
 
     @GetMapping("/home")
     public String listProducts(Model model, @RequestParam("page") Optional<Integer> page, HttpServletRequest request,
@@ -47,6 +51,8 @@ public class HomeController {
             User user = (User) session.getAttribute("user");
             model.addAttribute("user", user);
         }
+        List<Trademark> td = trademarkDao.findAll();
+        model.addAttribute("td", td);
         
         CartInfo myCart = Utils.getCartInSession(request);
         model.addAttribute("cartForm", myCart);
@@ -72,7 +78,9 @@ public class HomeController {
         }
         CartInfo myCart = Utils.getCartInSession(request);
         model.addAttribute("cartForm", myCart);
-
+        List<Trademark> td = trademarkDao.findAll();
+        model.addAttribute("td", td);
+        
         return "business/home/shop";
     }
 
@@ -94,7 +102,9 @@ public class HomeController {
         }
         CartInfo myCart = Utils.getCartInSession(request);
         model.addAttribute("cartForm", myCart);
-
+        
+        List<Trademark> td = trademarkDao.findAll();
+        model.addAttribute("td", td);
         return "business/home/shop";
     }
 
@@ -116,6 +126,9 @@ public class HomeController {
         }
         CartInfo myCart = Utils.getCartInSession(request);
         model.addAttribute("cartForm", myCart);
+        
+        List<Trademark> td = trademarkDao.findAll();
+        model.addAttribute("td", td);
 
         return "business/home/shop";
     }

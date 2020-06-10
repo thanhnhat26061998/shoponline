@@ -73,6 +73,7 @@
 														<input style="margin: 0 auto;" type="text"
 															class="form-control" 
 															placeholder="Name" th:field="*{name}"> 
+															<span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
 
 												</div>
 												</div>

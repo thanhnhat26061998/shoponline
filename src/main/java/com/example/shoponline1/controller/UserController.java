@@ -143,17 +143,15 @@ public class UserController {
         return "redirect:/home";
     }
 
- /*   @RequestMapping("/seehistory")
+    @RequestMapping("/seehistory")
     public String seeHistory(Model model, HttpSession session) {
         User user = (User) session.getAttribute("user");
         model.addAttribute("user", user);
         
         
         //OrderInfo orderInfo = orderServiceImpl.getOrderInfo(user.getId());
-        List<OrderInfo> orderInfoList = orderServiceImpl.getAllOrderInfo(user.getId());
-        for (OrderInfo orderInfo : orderInfoList) {
-            System.out.println("Info: " + orderInfo.getId() + orderInfo.getOrderDate() + orderInfo.getOrderDetailInfos());
-        }
+        List<OrderInfo> orderInfoList = orderServiceImpl.getOrderInfo(user.getId());
+       
         
         
         
@@ -162,7 +160,7 @@ public class UserController {
         //model.addAttribute("orderDetail", orderInfo);
 
         return "business/user/history";
-    }*/
+    }
     @RequestMapping("/403")
 	public String erros() {
 		return "/system/403";

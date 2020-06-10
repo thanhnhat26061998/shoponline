@@ -232,8 +232,9 @@
 
             <!-- Header -->
 
-            <header class="header" th:replace = "~{business/fragment/fragment ::header}">
-
+            <header class="header">
+            <div class="top_bar" th:replace = "~{business/fragment/fragment ::top_bar}"></div>
+					
             </header>
 
 
@@ -508,9 +509,6 @@
 
 
         <script src="business/jss/vendor/jquery-2.2.4.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" 
-                th:integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-        crossorigin="anonymous"></script>
         <script src="business/jss/vendor/bootstrap.min.js"></script>
         <script src="business/jss/jquery.ajaxchimp.min.js"></script>
         <script src="business/jss/jquery.nice-select.min.js"></script>
