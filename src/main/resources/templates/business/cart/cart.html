@@ -87,22 +87,34 @@
                                                             <span style="font-weight: bold" th:utext="${#numbers.formatDecimal(cartLineInfo.amount,3,'POINT',0,'COMMA')} + 'đ'"></span>
                                                         </div>                                                                        
                                                     </div>     
-                                                    <div class="d-flex flex-row flex-nowrap "> 
+                                                    <div class="d-flex flex-row flex-nowrap " style="position: static;"> 
                                                         <div class="input-group-btn">
                                                             <a th:href="@{|/decreaseProduct?code=${cartLineInfo.productInfo.productId}|}" 
                                                                class="btn btn-danger">-</a>
                                                         </div>
-                                                        <input th:name="|cartLines[${varStatus.index}].quantity|" style="width: 35px" min="1" max="10"
-                                                               th:value="${cartLineInfo.quantity}" class="form-control input-group-text" type="text"/> 
+                                                        <input th:name="|cartLines[${varStatus.index}].quantity|" style="width: 43px" min="1" th:max="@{cartLineInfo.productInfo.amount}"
+                                                               th:value="${cartLineInfo.quantity}" class="form-control input-group-text" type="text"/>
                                                         <div class="input-group-btn">
                                                             <a th:href="@{|/increaseProduct?code=${cartLineInfo.productInfo.productId}|}" 
                                                                class="btn btn-danger">+</a>                                                                             
                                                         </div>
-                                                    </div>                                                         
+                                                        
+                                                    </div > 
+                                                      
+                                                    
+                                                    
+                                                    
+                                                                                                         
                                                 </div>
+                                                
                                             </div>
+                                            <div style="font-size: 9px; position: absolute; top: 43px; right: 10px;">
+                                                    <i>Số lượng còn trong kho:</i><i th:text="${cartLineInfo.productInfo.amount}"></i>
+                                                    </div>
                                         </div>
+                                        
                                     </th:block>
+                                    
                                 </li>
                             </ul>
                         </div>

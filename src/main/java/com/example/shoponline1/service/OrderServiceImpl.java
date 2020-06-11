@@ -84,6 +84,9 @@ public class OrderServiceImpl implements IOrderService {
             total += line.getAmount();
             prdDt.setAmount(prdDt.getAmount()-line.getQuantity());
             productDetailDao.save(prdDt);
+            if (prdDt.getAmount()==0) {
+                productDetailDao.delete(prdDt);
+			}
             iOrderDetailDao.save(detail);
    // set order         
             order.setDeliveryTime(new Date());

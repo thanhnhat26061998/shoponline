@@ -175,9 +175,10 @@ public class MainController {
             @ModelAttribute("cartForm") CartInfo cartForm,
             @RequestParam(value = "code", defaultValue = "") Integer code) {
 
-        Product product = null;
+        ProductDetail product = null;
         if (code != null) {
-            product = productDAO.findById(code);
+            product = productDetailDao.findById(code).get(); 
+
         }
         if (product != null) {
 
@@ -204,9 +205,9 @@ public class MainController {
             @ModelAttribute("cartForm") CartInfo cartForm,
             @RequestParam(value = "code", defaultValue = "") Integer code) {
 
-        Product product = null;
-        if (code != null && code.intValue() > 0) {
-            product = productDAO.findById(code);
+    	ProductDetail product = null;
+        if (code != null) {
+            product = productDetailDao.findById(code).get(); 
         }
         if (product != null) {
 
@@ -234,6 +235,7 @@ public class MainController {
 
         CartInfo myCart = Utils.getCartInSession(request);
         model.addAttribute("cartForm", myCart);
+
 
         if (session.getAttribute("user") != null) {
             User user = (User) session.getAttribute("user");

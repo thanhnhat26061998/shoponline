@@ -25,6 +25,7 @@ public class ProductCartDto {
     private double priceAfter;
     private double reducedPrice;
     private String color;
+    private int amount;
 
     public ProductCartDto(ProductDetail productDetail) {
         this.productId = productDetail.getId();
@@ -34,18 +35,20 @@ public class ProductCartDto {
         this.priceAfter = productDetail.getPrice() - ((productDetail.getPrice() * productDetail.getProduct().getPromotion().getDiscountvalue())/100);
         this.reducedPrice = this.priceBefore - this.priceAfter;        
         this.color = productDetail.getColor().getName();
+        this.amount= productDetail.getAmount();
     }
 
     public ProductCartDto() {
     }
 
-    public ProductCartDto(int productId, String img, String productName, double priceBefore, double priceAfter, double reducedPrice) {
+    public ProductCartDto(int productId, String img, String productName, double priceBefore, double priceAfter, double reducedPrice, int amount) {
         this.productId = productId;
         this.img = img;
         this.productName = productName;
         this.priceBefore = priceBefore;
         this.priceAfter = priceAfter;
         this.reducedPrice = reducedPrice;
+        this.amount = amount;
     }
 
     public String getImg() {
@@ -63,7 +66,16 @@ public class ProductCartDto {
     public void setProductId(int productId) {
         this.productId = productId;
     }
+    
+    public int getAmount() {
+        return amount;
+    }
 
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    
     public String getProductName() {
         return productName;
     }
