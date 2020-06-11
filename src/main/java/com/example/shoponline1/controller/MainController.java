@@ -5,6 +5,7 @@
  */
 package com.example.shoponline1.controller;
 
+import com.example.shoponline1.dao.IProductDetailDao;
 import com.example.shoponline1.dto.CartInfo;
 import com.example.shoponline1.dto.CartLineInfo;
 import com.example.shoponline1.dto.ProductCartDto;
@@ -52,6 +53,9 @@ public class MainController {
 
     @Autowired
     private ProductDetailServiceImpl detailServiceImpl;
+    
+    @Autowired
+    private IProductDetailDao productDetailDao;
 
     //@Autowired
     //private CustomerFormValidator customerFormValidator;
@@ -92,7 +96,34 @@ public class MainController {
     }**/
     @RequestMapping({"/buyProduct"})
     public String listProductHandler(HttpServletRequest request, Model model, //
-            @RequestParam(value = "code", defaultValue = "") Integer code) {
+            @RequestParam(value = "code", defaultValue = "") Integer code,
+            @RequestParam(value = "quantity", defaultValue = "") Integer quantity) {
+
+        ProductDetail productDetail = null;
+        if (code != null) {
+            //product = productDAO.findById(code);
+            productDetail = detailServiceImpl.findById(code);
+        }
+        if (productDetail != null) {
+
+            // 
+            CartInfo cartInfo = Utils.getCartInSession(request);
+
+            ProductCartDto productInfo = new ProductCartDto(productDetail);
+
+            cartInfo.addProduct(productInfo, quantity);
+        }
+        CartInfo myCart = Utils.getCartInSession(request);
+        model.addAttribute("cartForm", myCart);
+        
+
+        return "redirect:/cart";
+    }
+    
+    @RequestMapping({"/buyProducts"})
+    public String listProductHandlers(HttpServletRequest request, Model model, //
+            @RequestParam(value = "code", defaultValue = "") Integer code,
+            @RequestParam(value = "quantity", defaultValue = "") Integer quantity) {
 
         ProductDetail productDetail = null;
         if (code != null) {
@@ -108,8 +139,10 @@ public class MainController {
 
             cartInfo.addProduct(productInfo, 1);
         }
+        CartInfo myCart = Utils.getCartInSession(request);
+        model.addAttribute("cartForm", myCart);
 
-        return "redirect:/cart";
+        return "redirect:/home";
     }
 
     @RequestMapping({"/cartRemoveProduct"})
@@ -129,6 +162,8 @@ public class MainController {
             cartInfo.removeProduct(productInfo);
 
         }
+        CartInfo myCart = Utils.getCartInSession(request);
+        model.addAttribute("cartForm", myCart);
 
         return "redirect:/cart";
     }
@@ -187,6 +222,8 @@ public class MainController {
                 }
             }
         }
+        CartInfo myCart = Utils.getCartInSession(request);
+        model.addAttribute("cartForm", myCart);
 
         return "redirect:/cart";
     }
@@ -270,6 +307,8 @@ public class MainController {
         }
 
         model.addAttribute("myCart", cartInfo);
+        CartInfo myCart = Utils.getCartInSession(request);
+        model.addAttribute("cartForm", myCart);
 
         return "business/cart/infoConfirm";
     }
@@ -280,7 +319,6 @@ public class MainController {
     public String shoppingCartConfirmationSave(HttpServletRequest request,
             Model model, HttpSession session) {
         CartInfo cartInfo = Utils.getCartInSession(request);
-
         if (cartInfo.isEmpty()) {
 
             return "redirect:/cart";
@@ -292,6 +330,9 @@ public class MainController {
         try {
             orderDAO.saveOrder(cartInfo, user);
         } catch (Exception e) {
+        	
+        	CartInfo myCart = Utils.getCartInSession(request);
+            model.addAttribute("cartForm", myCart);
 
             return "business/cart/infoConfirm";
         }
@@ -301,6 +342,9 @@ public class MainController {
 
         // Lưu thông tin đơn hàng cuối đã xác nhận mua.
         Utils.storeLastOrderedCartInSession(request, cartInfo);
+        
+        CartInfo myCart = Utils.getCartInSession(request);
+        model.addAttribute("cartForm", myCart);
 
         return "redirect:/shoppingCartFinalize";
     }
@@ -319,6 +363,9 @@ public class MainController {
         model.addAttribute("user", user);
         
         model.addAttribute("lastOrderedCart", lastOrderedCart);
+        
+        CartInfo myCart = Utils.getCartInSession(request);
+        model.addAttribute("cartForm", myCart);
         return "business/cart/finish";
     }
 

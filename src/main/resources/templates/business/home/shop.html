@@ -199,7 +199,8 @@
                                         <div>
                                             <a th:href="@{/productdetail(id=${product.productDetailId})}" class="a_href">    
                                                 <div class="card h-100">
-                                                    <img th:src="${product.img}" class="card-img-top" alt="..."/>
+                                                    <img th:src="${product.img}" class="card-img-top" alt="..."
+                                                    style="width: 220px; height: 245px;"/>
                                                     <div class="card-body">
                                                         <h3 th:text="${product.productName}"></h3>
                                                         <h3 th:text="${product.rom}"></h3>
@@ -215,9 +216,16 @@
                                                         <label>đ</label>
                                                     </div>
                                                     <div class="card-footer">
-                                                        <div class="btnbuy">
+                                                    <form action="/buyProducts" method="get">
+                                                    	<input value=1 name="quantity" hidden="">
+                                                    	<input th:value="${product.productDetailId}" name="code" hidden="">
+                                                    	<div>
+                                                    		<button class="btn_buyins">Add cart</button>
+                                                    	</div>
+                                                    </form>
+                                                        <!-- <div class="btnbuy">
                                                             <a th:href="@{|/buyProduct?code=${product.ProductId}|}" class="btn_buyins">Add to Cart</a>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                 </div>
                                             </a>

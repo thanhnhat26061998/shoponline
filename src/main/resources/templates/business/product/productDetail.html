@@ -156,14 +156,10 @@
                 vertical-align: middle;
                 color: #919090;
             }
-            .btnbuy{
-                text-align: center;
-               
-                
-                
-            }
+           
             .btn_buyins{
                 
+                width:400px;
                 text-align: center;
                 overflow: hidden;
                 padding: 5px 0;
@@ -268,6 +264,9 @@
                             </div>
                         </div>
                         <div class="col-lg-5 offset-lg-3">
+                        
+                        <form action="/buyProduct" method="get">
+                        <input th:value="${productDto.productDetailId}" name="code" hidden="">
                             <div class="">
                                 <div class="area_price">
                                     <strong th:text="${#numbers.formatDecimal(productDto.priceAfter, 0, 'COMMA', 0, 'POINT')}"></strong>
@@ -312,11 +311,12 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="flex items-center" style="margin-bottom: 10px; margin-top: 20px;">
                                     <label class="_2iNrDS div">Số lượng</label>
                                     <div style="display: inline;">
                                         <input  class="product-variation" value="1" min="1" th:max="${prDt.amount}"
-                                                type="number" style="width: 50px;" />
+                                                type="number" style="width: 50px;" name="quantity"/>
                                     </div>
                                     <div style="display: inline;">
                                         <label>Số lượng còn trong kho:</label>
@@ -342,11 +342,13 @@
 
                             <div class="btnbuy">
 
-                                <a th:href="@{|/buyProduct?code=${productDto.productId}|}" 
+                                <!-- <a th:href="@{|/buyProduct?code=${productDto.productId}|}" 
                                 class="btn_buyins"
                                
-                                >Add to Cart</a>
+                                >Add to Cart</a> -->
+                                <button class="btn_buyins">Add to Cart</button>
                             </div>
+                            </form>
 
                         </div>
                     </div>

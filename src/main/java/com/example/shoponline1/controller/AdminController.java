@@ -122,7 +122,7 @@ public class AdminController {
 	public String product(HttpSession session, Model model, HttpServletRequest request) {
 
 		int page = 0;
-		int size = 3;
+		int size = 10;
 		if (request.getParameter("page") != null && !request.getParameter("page").isEmpty()) {
 			page = Integer.parseInt(request.getParameter("page")) - 1;
 		}
@@ -144,13 +144,19 @@ public class AdminController {
 
 	@GetMapping("/admin/delete")
 	public String deleteProduct(@RequestParam("id") int id) {
-
-		Product prd = productService.findById(id);
-		List<ProductDetail> prdDt = prd.getProductDetail();
-		for (ProductDetail productDetail : prdDt) {
-			productDetaiDao.deleteById(productDetail.getId());
+		List<OrderDetail> ordt = orderDetailDao.findAll();
+		for (OrderDetail orderDetail : ordt) {
+			if (orderDetail.getProduct().getId()!=id) {
+				Product prd = productService.findById(id);
+				List<ProductDetail> prdDt = prd.getProductDetail();
+				for (ProductDetail productDetail : prdDt) {
+					productDetaiDao.deleteById(productDetail.getId());
+				}
+				productDao.deleteById(id);
+				return "redirect:/admin";
+			}
 		}
-		productDao.deleteById(id);
+		
 		return "redirect:/admin";
 	}
 
@@ -353,10 +359,22 @@ public class AdminController {
 
 	@GetMapping("/admin/deletedt")
 	public String deleteDetailProduct(@RequestParam("id") int id) {
-
 		ProductDetail prds = productDetaiDao.findById(id).get();
 		int ids = prds.getProduct().getId();
-		productDetaiDao.deleteById(id);
+		List<OrderDetail> ordt = orderDetailDao.findAll();
+		for (OrderDetail orderDetail : ordt) {
+			for (ProductDetail prdt2 : orderDetail.getProduct().getProductDetail()) {
+				if (prdt2.getId()!=id) {
+					
+					productDetaiDao.deleteById(id);
+
+					return "redirect:/admin/productdetail?id=" + ids;
+				}
+			}
+			
+		}
+
+
 
 		return "redirect:/admin/productdetail?id=" + ids;
 

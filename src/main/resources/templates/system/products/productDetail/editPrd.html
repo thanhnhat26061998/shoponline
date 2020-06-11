@@ -97,7 +97,7 @@
 														<input type="text" class="form-control"
 															
 															id="inputPassword4" 
-															
+															th:field="*{price}"
 															th:value="*{#numbers.formatDecimal(price, 0,0, 'COMMA')}">
 															 <span
 															th:if="${#fields.hasErrors('price')}" class="error"
