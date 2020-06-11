@@ -164,7 +164,7 @@
                             <!-- Shop Sidebar -->
                             <div class="shop_sidebar">
                                 <div class="sidebar_section">
-                                    <div class="sidebar_title">Filter By</div>
+                                    <div class="sidebar_title">Tìm kiếm theo:</div>
                                     <ul  style="margin: 0px;"
                                     class="sidebar_categories" th:each="td : ${td}">
                                         <li><a th:href="@{/filterByBrand(name=${td.name})}" th:text="${td.name}"></a></li>
@@ -173,15 +173,15 @@
                                 </div>
                                 <div class="sidebar_section filter_by_section">
 
-                                    <div class="sidebar_title">Price</div>
+                                    <div class="sidebar_title">Giá:</div>
                                     <ul class="sidebar_categories">
-                                        <li><a th:href="@{/filterByPrice(price=3000000)}">3 triệu</a></li>
-                                        <li><a th:href="@{/filterByPrice(price=5000000)}">5 triệu</a></li>
-                                        <li><a th:href="@{/filterByPrice(price=7000000)}">7 triệu</a></li>
-                                        <li><a th:href="@{/filterByPrice(price=9000000)}">9 triệu</a></li>
-                                        <li><a th:href="@{/filterByPrice(price=15000000)}">15 triệu</a></li>
-                                        <li><a th:href="@{/filterByPrice(price=20000000)}">20 triệu</a></li>
-                                        <li><a th:href="@{/filterByPrice(price=25000000)}">25 triệu</a></li>
+                                        <li><a th:href="@{/filterByPrice(price=3000000)}">dưới 3 triệu</a></li>
+                                        <li><a th:href="@{/filterByPrice(price=5000000)}">dưới 5 triệu</a></li>
+                                        <li><a th:href="@{/filterByPrice(price=7000000)}">dưới 7 triệu</a></li>
+                                        <li><a th:href="@{/filterByPrice(price=9000000)}">dưới 9 triệu</a></li>
+                                        <li><a th:href="@{/filterByPrice(price=15000000)}">dưới 15 triệu</a></li>
+                                        <li><a th:href="@{/filterByPrice(price=20000000)}">dưới 20 triệu</a></li>
+                                        <li><a th:href="@{/filterByPrice(price=25000000)}">dưới 25 triệu</a></li>
                                     </ul>
                                 </div>
 

@@ -438,6 +438,10 @@ public class AdminController {
 //		List<Order> order = orderDao.findAll();
 		model.addAttribute("order", order);
 		model.addAttribute("user", user);
+		long millis=System.currentTimeMillis();  
+		java.sql.Date date=new java.sql.Date(millis);  
+		System.out.println(date);  
+		model.addAttribute("date", date);
 
 		return "system/order/list_order";
 	}

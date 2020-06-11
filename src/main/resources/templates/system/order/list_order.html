@@ -93,12 +93,12 @@
 									</select>
 									<p style="display: inline;">Begin:</p>
 									<input type="date" class="form-control" name="begin" pattern="yyyy-MM-dd"
-									style="display: inline; width: 200px;">
+									style="display: inline; width: 200px;" th:value="*{date}">
 									<p style="display: inline;">End:</p>
-									<input type="date" class="form-control" name="end"
+									<input type="date" class="form-control" name="end" th:value="*{date}"
 									style="display: inline; width: 200px;"
 									pattern="yyyy-MM-dd">	
-									
+
 									
 									<button type="submit" class="btn btn-primary" style="margin-bottom: 4px;">
 									Search</button>

@@ -71,7 +71,7 @@
                                                 <ul>
                                                     <li><a th:href="@{logout}">Logout</a></li>
                                                     <li><a th:href="@{/editprofile}">Edit profile</a></li>
-                                                <!--     <li><a th:href="@{/seehistory}">See history</a></li> -->
+                                       				<li th:if="*{user.name=='admin'}"><a th:href="@{/admin}">Admin manage</a></li>
                                                 </ul>
                                             </li>
                                         </ul>

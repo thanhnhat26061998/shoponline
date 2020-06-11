@@ -93,10 +93,13 @@
 
 													<div class="form-group col-md-12">
 														<label for="inputPassword4" class="col-form-label">Price</label>
+											
 														<input type="text" class="form-control"
-														
-															id="inputPassword4" placeholder="Price"
-															th:field="*{price}"> <span
+															
+															id="inputPassword4" 
+															
+															th:value="*{#numbers.formatDecimal(price, 0,0, 'COMMA')}">
+															 <span
 															th:if="${#fields.hasErrors('price')}" class="error"
 															th:errors="*{price}"></span>
 															<span
