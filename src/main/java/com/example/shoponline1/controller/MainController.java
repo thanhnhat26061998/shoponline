@@ -65,7 +65,7 @@ public class MainController {
         if (target == null) {
             return;
         }
-        System.out.println("Target=" + target);
+
 
         // Trường hợp update SL trên giỏ hàng.
         // (@ModelAttribute("cartForm") @Validated CartInfo cartForm)

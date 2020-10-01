@@ -271,7 +271,7 @@
                                 <div class="area_price">
                                     <strong th:text="${#numbers.formatDecimal(productDto.priceAfter, 0, 'COMMA', 0, 'POINT')}"></strong>
                                     <span class="hisprice" th:text="${#numbers.formatDecimal(productDto.priceBefore, 0, 'COMMA', 0, 'POINT')}"></span>
-                                    <label class="installment">trả góp 0%</label>
+                                    <label class="installment" th:text="${productDto.namePoromotion}">trả góp 0%</label>
                                 </div>
                                 <div class="memory memory3 ">
                                     <div class="m_default">

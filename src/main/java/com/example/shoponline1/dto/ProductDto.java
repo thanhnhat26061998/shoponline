@@ -23,4 +23,5 @@ public class ProductDto {
 	private String img;
 	private String img2;
 	private String img3;
+	private String namePoromotion;
 }

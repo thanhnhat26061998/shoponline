@@ -112,7 +112,8 @@
 												<th data-priority="1">Name product</th>
 												<th data-priority="3">Config</th>				
 												<th data-priority="3">Color</th>
-												<th data-priority="3">price</th>
+												<th data-priority="3">Price</th>
+												<th data-priority="3">Amount</th>
 
 
 											</tr>
@@ -131,7 +132,7 @@
 												<th 
 												th:text="${#numbers.formatDecimal(order.price, 0, 'COMMA', 0, 'POINT')}"></th>
 
-
+												<th th:text="${order.quantity}"></th>
 												
 												
 
